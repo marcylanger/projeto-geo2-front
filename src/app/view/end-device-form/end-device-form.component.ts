@@ -60,6 +60,8 @@ export class EndDeviceFormComponent implements OnInit {
 
     private gateways : Array<Gateway> = [];
 
+    private pontos : Array<EndDevice> = [];
+
     /**
      * Construtor da classe
      * @param fb 
@@ -210,14 +212,32 @@ export class EndDeviceFormComponent implements OnInit {
   
       
 
-      var place = [-110, 45];
+      
 
-      var areaPoligono = new Point(place);
+      var features = [];
+      this.noService.listar().subscribe(dados => {
+        console.log("Listou");
+        this.pontos = dados;
+
+        this.pontos.forEach(function (ponto) {
+          var place = [ponto.x, ponto.y];
+
+          var ponto = new Point(place);
+          console.log(ponto.x);
+          console.log(ponto.y);
+          features.push(new Feature(ponto));
+        });
+      },
+        (error: any) => {
+          console.log("Listou");
+          this.messageService.toastError(error.error.message);
+        });
+
+
       
       var source = new VectorSource({ 
         wrapX: false,
-        features: [
-          new Feature(areaPoligono)] 
+        features: features
         });
 
       this.vector = new VectorLayer({
