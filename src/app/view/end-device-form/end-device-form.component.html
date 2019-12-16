@@ -1,0 +1,56 @@
+<div fxLayout="column">
+    <div fxLayout="row" class="header-form">
+        <span fxFlex>Cadastrar/Alterar End Device (Sensor)</span>
+        <div>
+            <button mat-raised-button class="form-button bgc-grey-500 tc-grey-50" (click)="onBack()">
+                Cancelar
+            </button>
+            <button [disabled]="noForm.invalid" mat-raised-button color="accent" class="form-button" (click)="onSave()">
+                Salvar
+            </button>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center start">
+        <mat-card class="background-color" fxFlex="90">
+            <form [formGroup]="noForm" novalidate>
+                <div fxLayout="column" fxFlex=90>
+
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxFlex=50>
+                            <!--Nome-->
+                            <mat-form-field fxFlex [floatLabel]="'always'">
+                                <mat-label>Identificador</mat-label>
+                                <input matInput id="identificador" formControlName="identificador"
+                                    placeholder="Identificador" layout-align="center end" required>
+                                <mat-error *ngIf="noForm.get('identificador').hasError('maxLength')">
+                                    Máximo 144 caracteres.
+                                </mat-error>
+                                <mat-error *ngIf="noForm.get('identificador').hasError('required')">
+                                    Nome é obrigatório.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex=50>
+                            <!--gateway-->
+                            <mat-form-field fxFlex [floatLabel]="'always'">
+                                <mat-label>Gateway a conectar</mat-label>
+                                <mat-select formControlName="gateway" placeholder="Selecione um gateway" required>
+                                    <mat-option *ngFor="let gateway of gateways" [value]="gateway">
+                                        {{ gateway.identificador }}
+                                    </mat-option>
+                                </mat-select>
+                                <mat-error *ngIf="noForm.get('gateway').hasError('required')">
+                                    Gateway é obrigatório.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+
+
+
+                    </div>
+                </div>
+            </form>
+            <div id="map" class="map"></div>
+        </mat-card>
+    </div>
+</div>

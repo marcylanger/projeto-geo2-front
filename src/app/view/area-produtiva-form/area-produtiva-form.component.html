@@ -1,0 +1,51 @@
+<div fxLayout="column">
+    <div fxLayout="row" class="header-form">
+        <span fxFlex>Cadastrar/Alterar Área Produtiva</span>
+        <div>
+            <button mat-raised-button class="form-button bgc-grey-500 tc-grey-50" (click)="onBack()">
+                Cancelar
+            </button>
+            <button [disabled]="areaForm.invalid" mat-raised-button color="accent" class="form-button"
+                (click)="onSave()">
+                Salvar
+            </button>
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center start">
+        <mat-card class="background-color" fxFlex="90">
+            <form [formGroup]="areaForm" novalidate>
+                <div fxLayout="column" fxFlex=90>
+
+                    <div fxLayout="column">
+                        <div fxLayout="row" fxFlex=50>
+                            <!--Nome-->
+                            <mat-form-field fxFlex [floatLabel]="'always'">
+                                <mat-label>Nome</mat-label>
+                                <input matInput id="nome" formControlName="nome" placeholder="Nome"
+                                    layout-align="center end" required>
+                                <mat-error *ngIf="areaForm.get('nome').hasError('maxLength')">
+                                    Máximo 144 caracteres.
+                                </mat-error>
+                                <mat-error *ngIf="areaForm.get('nome').hasError('required')">
+                                    Nome é obrigatório.
+                                </mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div fxLayout="row" fxFlex=50>
+                            <mat-form-field fxFlex [floatLabel]="'always'">
+                                <mat-label>Descrição</mat-label>
+                                <textarea matInput id="descricao" formControlName="descricao"
+                                    placeholder="Descrição"></textarea>
+
+
+                            </mat-form-field>
+                        </div>
+
+
+                    </div>
+                </div>
+            </form>
+            <div id="map" class="map"></div>
+        </mat-card>
+    </div>
+</div>

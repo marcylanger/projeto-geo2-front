@@ -1,0 +1,64 @@
+<div fxLayout="column">
+    <div fxLayout="row" class="header-form">
+        <span fxFlex>Visualizar Área Produtiva</span>
+        <div>
+            <button mat-raised-button class="form-button bgc-grey-500 tc-grey-50" (click)="onBack()">
+                Voltar
+            </button>
+            <!--<button mat-raised-button color="accent" (click)="navigateToEdit()">
+                    Editar
+                </button>-->
+        </div>
+    </div>
+    <div fxLayout="row" fxLayoutAlign="center start">
+        <mat-card class="background-color" fxFlex="90">
+
+            <div fxLayout="column" fxFlex=90>
+
+                <div fxLayout="row">
+                    <div fxLayout="column" fxFlex=50 class="field-detail">
+                        <span>ID:</span>
+                        <span class="label-detail-value">{{area.id}}</span>
+                    </div>
+
+                    <div fxLayout="column" fxFlex=50 class="field-detail">
+                        <span>Nome:</span>
+                        <span class="label-detail-value">{{area.nome}}</span>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div fxLayout="column" fxFlex=50 class="field-detail">
+                        <span>Descrição:</span>
+                        <span class="label-detail-value">{{area.descricao}}</span>
+                    </div>
+                </div>
+                <div fxLayout="column">
+                    <br>
+                        <span>Gateways:</span>
+                        <mat-list *ngFor="let gateway of gateways" role="list">
+                                <mat-list-item class="item-list" role="listitem" fxFlex>
+                                    <div fxFlex (click)="selecionar(gateway.identificador)">
+                                        <span fxFlex>{{gateway.identificador | uppercase}}</span>
+                                    </div>
+                                </mat-list-item>
+                            </mat-list>
+                </div>
+                <div fxLayout="column" >
+                    <br>
+                        <span>End Devices:</span>
+                        <mat-list *ngFor="let no of nos" role="list">
+                                <mat-list-item class="item-list" role="listitem" fxFlex>
+                                    <div fxFlex (click)="selecionar(no.identificador)">
+                                        <span fxFlex>{{no.identificador | uppercase}}</span>
+                                    </div>
+                                </mat-list-item>
+                            </mat-list>
+                </div>
+                <div id="map" class="map"></div>
+            </div>
+
+  
+    
+    </mat-card>
+</div>
+</div>

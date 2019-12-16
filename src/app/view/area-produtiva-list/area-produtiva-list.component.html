@@ -1,0 +1,27 @@
+<div fxLayout="column" fxFlex class="div-content">
+
+    <div fxLayout="row" class="header-form">
+        <span fxFlex>Consulta de Áreas Produtivas</span>
+        <div>
+            <button mat-raised-button color="accent" (click)="navigateToNovo()">Nova Área Produtiva</button>
+        </div>
+    </div>
+
+    <div fxFlex>
+        <mat-card class="background-color" fxFlex>
+            <mat-list *ngFor="let area of areas" role="list">
+                <mat-list-item class="item-list" role="listitem" fxFlex>
+                    <div fxFlex (click)="navigateDetalhar(area.nome)">
+                        <span fxFlex>{{area.nome | uppercase}}</span>
+                    </div>
+                    <!--<button class="button-option" (click)="selecionar(func.id, 1)">
+                        <mat-icon>edit</mat-icon>
+                    </button>-->
+                    <button class="button-option" (click)="remover(area.nome)">
+                        <mat-icon>delete</mat-icon>
+                    </button>
+                </mat-list-item>
+            </mat-list>
+        </mat-card>
+    </div>
+</div>

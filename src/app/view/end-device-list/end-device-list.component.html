@@ -1,0 +1,27 @@
+<div fxLayout="column" fxFlex class="div-content">
+
+        <div fxLayout="row" class="header-form">
+            <span fxFlex>Consulta de End Devices (Sensores)</span>
+            <div>
+                <button mat-raised-button color="accent" (click)="navigateToNovo()">Novo End Device (Sensor)</button>
+            </div>
+        </div>
+    
+        <div fxFlex>
+            <mat-card class="background-color" fxFlex>
+                <mat-list *ngFor="let no of enddevices" role="list">
+                    <mat-list-item class="item-list" role="listitem" fxFlex>
+                        <div fxFlex (click)="selecionar(no.identificador)">
+                            <span fxFlex>{{no.identificador | uppercase}}</span>
+                        </div>
+                        <!--<button class="button-option" (click)="selecionar(no.identificador)">
+                            <mat-icon>edit</mat-icon>
+                        </button>-->
+                        <button class="button-option" (click)="remover(no.identificador)">
+                            <mat-icon>delete</mat-icon>
+                        </button>
+                    </mat-list-item>
+                </mat-list>
+            </mat-card>
+        </div>
+    </div>
